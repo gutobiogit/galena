@@ -6,7 +6,7 @@ import marshmallow.validate
 
 @dataclass
 class Email_user():
-    """Class for keeping track of Address."""
+    """Class for keeping track of Emails."""
     email_address: str = field(metadata={"validate": marshmallow.validate.Email()})
 
 # test1 = Email_user.Schema().loads(json.dumps({"email_address": 1})) # False
