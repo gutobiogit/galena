@@ -1,4 +1,5 @@
 import json
+from marshmallow import ValidationError
 from telephone_dto import Telephone_user
 from email_dto import Email_user
 from cpf_dto import Cpf_user
@@ -19,8 +20,9 @@ class Spreadsheet:
     @email.setter
     def email(self, value):
         try:
-            self._email = Email_user.Schema().loads(json.dumps({"email_address": value}))
-        except Exception as ValidationError:
+            self._email = Email_user.Schema().loads(json.dumps(
+                                {"email_address": value}))
+        except ValidationError:
             raise ValueError("Invalid email address")
 
     @property
@@ -29,7 +31,7 @@ class Spreadsheet:
 
     @name.setter
     def name(self, value):
-        self._name = value # Name.Schema().loads(json.dumps({"name": value}))
+        self._name = value
 
     @property
     def group(self):
@@ -55,9 +57,10 @@ class Spreadsheet:
     def cpf(self, value):
         try:
             self._cpf = Cpf_user.Schema().loads(json.dumps({"cpf": value}))
-        except Exception as ValidationError:
+        except ValidationError:
             value_retried = ErrorFixer.cpf_fixer(value)
-            self._cpf = Cpf_user.Schema().loads(json.dumps({"cpf": value_retried}))
+            self._cpf = Cpf_user.Schema().loads(
+                        json.dumps({"cpf": value_retried}))
 
     @property
     def telephone(self):
@@ -66,10 +69,12 @@ class Spreadsheet:
     @telephone.setter
     def telephone(self, value):
         try:
-            self._telephone = Telephone_user.Schema().loads(json.dumps({"telephone": value}))
-        except Exception as ValidationError:
+            self._telephone = Telephone_user.Schema().loads(
+                        json.dumps({"telephone": value}))
+        except ValidationError:
             value_retried = ErrorFixer.telephone_fixer(value)
-            self._telephone = Telephone_user.Schema().loads(json.dumps({"telephone": value_retried}))
+            self._telephone = Telephone_user.Schema().loads(
+                        json.dumps({"telephone": value_retried}))
 
     @property
     def birthday(self):
@@ -78,10 +83,12 @@ class Spreadsheet:
     @birthday.setter
     def birthday(self, value):
         try:
-            self._birthday = Birthday_user.Schema().loads(json.dumps({"birthday": str(value)}))
-        except Exception as ValidationError:
+            self._birthday = Birthday_user.Schema().loads(
+                        json.dumps({"birthday": str(value)}))
+        except ValidationError:
             value_retried = ErrorFixer.birthday_fixer(value)
-            self._birthday = Birthday_user.Schema().loads(json.dumps({"birthday": str(value_retried)}))
+            self._birthday = Birthday_user.Schema().loads(
+                        json.dumps({"birthday": str(value_retried)}))
 
     @property
     def address(self):
@@ -90,4 +97,7 @@ class Spreadsheet:
     @address.setter
     def address(self, vals):
         street, number, city, state, zip_code = vals
-        self._address = Address.Schema().loads(json.dumps({"street": street, "number": number, "city": city, "state": state, "zip_code": zip_code}))
+        self._address = Address.Schema().loads(
+                        json.dumps({"street": street, "number": number,
+                                    "city": city, "state": state,
+                                    "zip_code": zip_code}))

@@ -9,6 +9,7 @@ def split_address(address):
     zip_code = address_split[-1].split(" ")[1]
     city = address_split[-2]
     number = address_split[0].split(" ")[-1].strip(" ")
+    print(number)
     street = " ".join(address_split[0].split(" ")[0:-1])
     return [street, number, city, state, zip_code]
 
@@ -16,7 +17,7 @@ def split_address(address):
 wb = load_workbook('tabela-de-exemplo.xlsx')
 ws = wb['results-20220124-165033']
 objects = []
-max_columns=ws.max_column+2
+max_columns = ws.max_column+2
 emails = ws["A4":f"A{max_columns}"]
 names = ws["B4":f"B{max_columns}"]
 groups = ws["C4":f"C{max_columns}"]
@@ -25,10 +26,7 @@ cpfs = ws["E4":f"E{max_columns}"]
 telephones = ws["F4":f"F{max_columns}"]
 birthdays = ws["G4":f"G{max_columns}"]
 address = ws["H4":f"H{max_columns}"]
-
-#print(emails[4][0].value)
-
-for count in range(1,max_columns-3):
+for count in range(1, max_columns-3):
 
     obj = Spreadsheet()
     obj.email = emails[count][0].value
@@ -52,39 +50,3 @@ for count in range(1,max_columns-3):
     print("\n")
 
     objects.append(obj)
-
-
-# for a in objects:
-#     print(a.email)
-#     print(a.name)
-#     print(a.group)
-#     print(a.group_name)
-#     print(a.cpf)
-#     print(a.telephone)
-#     print(a.birthday)
-#     print("\n")
-#     print("\n")
-#print(objects)
-
-# for data in x:
-#     for cell in data:
-#         print(cell.value)
-
-# for col in ws.iter_cols(min_row=1, max_row=8, min_col=1, max_col=ws.max_column):
-#     for cell in col:
-#         print(cell.value)
-#         if cell.value == 'E-mail':
-#             email = cell.column
-#         if cell.value == 'Nome':
-#             name = cell.column
-#         if cell.value == 'Grupo':
-#             group = cell.column
-#         if cell.value == 'Nome do Grupo':
-#             group_name = cell.column
-#         if cell.value == 'CPF':
-#             cpf = cell.column
-#         if cell.value == 'Telefone':
-#             telephone = cell.column
-#         if cell.value == 'Data Nascto':
-#             birthday = cell.column
-#         print (email, name, group, group_name, cpf, telephone, birthday)
