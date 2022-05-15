@@ -1,4 +1,5 @@
 from dataclasses import field
+from marshmallow import Schema
 from marshmallow_dataclass import dataclass
 import marshmallow.validate
 
