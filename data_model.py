@@ -25,6 +25,22 @@ def build_address(address):
     zip_code = address['zip_code']
     return "{} {}, {}, {} {}".format(street, number, city, state, zip_code)
 
+def get_one_record(id):
+    FILE = 'tabela-de-exemplo.xlsx'
+    workbook = load_workbook(FILE)
+    ws = workbook['results-20220124-165033']
+    row = id+4
+    obj = Spreadsheet()
+    obj.email = ws[f"A{row}"].value
+    obj.name = ws[f"B{row}"].value
+    obj.group = ws[f"C{row}"].value
+    obj.group_name = ws[f"D{row}"].value
+    obj.cpf = ws[f"E{row}"].value
+    obj.telephone = ws[f"F{row}"].value
+    obj.birthday = ws[f"G{row}"].value
+    obj.address = split_address(ws[f"H{row}"].value)
+    return obj
+
 def run():
     FILE = 'tabela-de-exemplo.xlsx'
     workbook = load_workbook(FILE)

@@ -8,26 +8,48 @@ from spreadsheet_entity import Spreadsheet
 app = Flask(__name__)
 CORS(app, support_credentials=True)
 
+def get_one_data(posted_data):
+    one_record = data_model.get_one_record(posted_data)
+    json_obj = dict()
+    json_list = list()
+    json_obj['code'] = posted_data
+    json_obj['cpf'] = one_record.cpf
+    print("."*50,json_obj['cpf'])
+    json_obj['name'] = one_record.name
+    json_obj['address'] = one_record.address
+    json_obj['email'] = one_record.email.email_address
+    json_obj['group'] = one_record.group
+    json_obj['group_name'] = one_record.group_name
+    json_obj['telephone'] = one_record.telephone
+    json_obj['birthday'] = one_record.birthday
+    json_obj['address'] = one_record.address
+    json_list.append({"id":posted_data,"birthday":json_obj['birthday'],"fname":json_obj['name'],
+                   "group":json_obj['group'],"lname":json_obj['cpf'],"username":json_obj['email'],
+                   "group_name":json_obj['group_name'],"telephone":json_obj['telephone'],
+                   "address":json_obj['address']})    
+    return jsonify(json_obj)
+
+
 def get_all_data():
-   all_records = data_model.run()
-   json_obj = dict()
-   json_list = list()
-   for index, dados in enumerate(all_records):
-      json_obj['code']= index
-      json_obj['cpf']= dados.cpf
-      json_obj['name']= dados.name
-      json_obj['address']=dados.address
-      json_obj['email']=dados.email.email_address
-      json_obj['group']=dados.group
-      json_obj['group_name']=dados.group_name
-      json_obj['telephone']=dados.telephone
-      json_obj['birthday']=dados.birthday
-      json_obj['address']=dados.address
-      json_list.append({"id":index+1,"birthday":json_obj['birthday'],"fname":json_obj['name'],
-                     "group":json_obj['group'],"lname":json_obj['cpf'],"username":json_obj['email'],
-                     "group_name":json_obj['group_name'],"telephone":json_obj['telephone'],
-                     "address":json_obj['address']})    
-   return jsonify(json_list)
+    all_records = data_model.run()
+    json_obj = dict()
+    json_list = list()
+    for index, dados in enumerate(all_records):
+       json_obj['code']= index
+       json_obj['cpf']= dados.cpf
+       json_obj['name']= dados.name
+       json_obj['address']=dados.address
+       json_obj['email']=dados.email.email_address
+       json_obj['group']=dados.group
+       json_obj['group_name']=dados.group_name
+       json_obj['telephone']=dados.telephone
+       json_obj['birthday']=dados.birthday
+       json_obj['address']=dados.address
+       json_list.append({"id":index+1,"birthday":json_obj['birthday'],"fname":json_obj['name'],
+                      "group":json_obj['group'],"lname":json_obj['cpf'],"username":json_obj['email'],
+                      "group_name":json_obj['group_name'],"telephone":json_obj['telephone'],
+                      "address":json_obj['address']})    
+    return jsonify(json_list)
 
 def delete_record(posted_data):
     message = data_model.delete_row(posted_data)
@@ -47,6 +69,13 @@ def create_new_record(posted_data):
     message = data_model.add_row(new_spreadsheet)
     return message
 
+
+
+
+@app.route('/v1/data/<int:id>', methods=['GET'])
+def get_one(id):
+    output=get_one_data(id)
+    return  output
 
 @app.route('/v1/data', methods=['GET'])
 def get_all():

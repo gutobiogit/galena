@@ -116,21 +116,36 @@ function loadTable() {
   function showUserEditBox(id) {
     console.log(id);
     const xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "https://www.mecallapi.com/api/users/"+id);
+    xhttp.open("GET", "http://127.0.0.1:5000/v1/data/"+id);
     xhttp.send();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         const objects = JSON.parse(this.responseText);
-        const user = objects['user'];
+        const user = objects;
         console.log(user);
         Swal.fire({
           title: 'Edit User',
           html:
-            '<input id="id" type="hidden" value='+user['id']+'>' +
-            '<input id="fname" class="swal2-input" placeholder="First" value="'+user['fname']+'">' +
-            '<input id="lname" class="swal2-input" placeholder="Last" value="'+user['lname']+'">' +
-            '<input id="username" class="swal2-input" placeholder="Username" value="'+user['username']+'">' +
-            '<input id="email" class="swal2-input" placeholder="Email" value="'+user['email']+'">',
+            // '<input id="id" type="hidden" value='+user['id']+'>' +
+            // '<input id="fname" class="swal2-input" placeholder="First" value="'+user['fname']+'">' +
+            // '<input id="lname" class="swal2-input" placeholder="Last" value="'+user['lname']+'">' +
+            // '<input id="username" class="swal2-input" placeholder="Username" value="'+user['username']+'">' +
+            // '<input id="email" class="swal2-input" placeholder="Email" value="'+user['email']+'">',
+
+
+            '<input id="id" type="hidden">' +
+            '<input id="fname" class="swal2-input" placeholder="Name" value="'+user['name']+'">' +
+            '<input id="lname" class="swal2-input" placeholder="CPF" value="'+JSON.parse(user['cpf']).cpf+'">' +
+            '<input id="email" class="swal2-input" placeholder="Email" value="'+user['email']+'">' +
+            '<input id="group" class="swal2-input" placeholder="Grupo" value="'+user['group']+'">' +
+            '<input id="group_name" class="swal2-input" placeholder="Grupo nome" value="'+user['group_name']+'">' +
+            '<input id="telephone" class="swal2-input" placeholder="Telefone" value="'+JSON.parse(user['telephone']).telephone+'">'+
+            '<input id="birthday" class="swal2-input" placeholder="Data Nascimento" value="'+JSON.parse(user['birthday']).birthday+'">'+
+            '<input id="street" class="swal2-input" placeholder="Rua" value="'+JSON.parse(user['address']).street+'">'+
+            '<input id="number" class="swal2-input" placeholder="Numero" value="'+JSON.parse(user['address']).number+'">'+
+            '<input id="city" class="swal2-input" placeholder="Cidade" value="'+JSON.parse(user['address']).city+'">'+
+            '<input id="state" class="swal2-input" placeholder="Estado" value="'+JSON.parse(user['address']).state+'">'+
+            '<input id="zip_code" class="swal2-input" placeholder="Cep" value="'+JSON.parse(user['address']).zip_code+'">',
           focusConfirm: false,
           preConfirm: () => {
             userEdit();
