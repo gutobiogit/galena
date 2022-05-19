@@ -4,10 +4,8 @@ function loadTable() {
     xhttp.send();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
-        console.log(this.responseText);
         var trHTML = ''; 
         const objects = JSON.parse(this.responseText);
-        console.log(objects);
         for (let object of objects) {
           trHTML += '<tr>'; 
           trHTML += '<td>'+object['id']+'</td>';
@@ -114,7 +112,6 @@ function loadTable() {
   }
   
   function showUserEditBox(id) {
-    console.log(id);
     const xhttp = new XMLHttpRequest();
     xhttp.open("GET", "http://127.0.0.1:5000/v1/data/"+id);
     xhttp.send();
@@ -122,18 +119,10 @@ function loadTable() {
       if (this.readyState == 4 && this.status == 200) {
         const objects = JSON.parse(this.responseText);
         const user = objects;
-        console.log(user);
         Swal.fire({
           title: 'Edit User',
           html:
-            // '<input id="id" type="hidden" value='+user['id']+'>' +
-            // '<input id="fname" class="swal2-input" placeholder="First" value="'+user['fname']+'">' +
-            // '<input id="lname" class="swal2-input" placeholder="Last" value="'+user['lname']+'">' +
-            // '<input id="username" class="swal2-input" placeholder="Username" value="'+user['username']+'">' +
-            // '<input id="email" class="swal2-input" placeholder="Email" value="'+user['email']+'">',
-
-
-            '<input id="id" type="hidden">' +
+            '<input id="id" type="hidden" value="'+ id+'">' +
             '<input id="fname" class="swal2-input" placeholder="Name" value="'+user['name']+'">' +
             '<input id="lname" class="swal2-input" placeholder="CPF" value="'+JSON.parse(user['cpf']).cpf+'">' +
             '<input id="email" class="swal2-input" placeholder="Email" value="'+user['email']+'">' +
@@ -159,15 +148,24 @@ function loadTable() {
     const id = document.getElementById("id").value;
     const fname = document.getElementById("fname").value;
     const lname = document.getElementById("lname").value;
-    const username = document.getElementById("username").value;
     const email = document.getElementById("email").value;
-      
+    const group = document.getElementById("group").value;
+    const group_name = document.getElementById("group_name").value;
+    const telephone = document.getElementById("telephone").value;
+    const birthday = document.getElementById("birthday").value;
+    const street = document.getElementById("street").value;
+    const number = document.getElementById("number").value;
+    const city = document.getElementById("city").value;
+    const state = document.getElementById("state").value;
+    const zip_code = document.getElementById("zip_code").value;
     const xhttp = new XMLHttpRequest();
-    xhttp.open("PUT", "https://www.mecallapi.com/api/users/update");
+    xhttp.open("PUT", "http://127.0.0.1:5000/v1/data/"+id);
     xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhttp.send(JSON.stringify({ 
-      "id": id, "fname": fname, "lname": lname, "username": username, "email": email, 
-      "avatar": "https://www.mecallapi.com/users/cat.png"
+      "fname": fname, "lname": lname, "email": email, "group": group, 
+      "group_name": group_name, "telephone": telephone, "birthday": birthday, 
+      "street": street, "number": number, "city": city, "state": state,
+      "zip_code": zip_code
     }));
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {

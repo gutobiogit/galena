@@ -2,7 +2,7 @@ import json
 from marshmallow import ValidationError
 from telephone_dto import Telephone_user
 from email_dto import Email_user
-from cpf_dto import Cpf_user
+from cpf_dto import CpfUser
 from address_dto import Address
 from birthday_dto import Birthday_user
 from spreadsheet_error_fixer import ErrorFixer
@@ -51,15 +51,15 @@ class Spreadsheet:
 
     @property
     def cpf(self):
-        return Cpf_user.Schema().dumps(self._cpf)
+        return CpfUser.Schema().dumps(self._cpf)
 
     @cpf.setter
     def cpf(self, value):
         try:
-            self._cpf = Cpf_user.Schema().loads(json.dumps({"cpf": value}))
+            self._cpf = CpfUser.Schema().loads(json.dumps({"cpf": value}))
         except ValidationError:
             value_retried = ErrorFixer.cpf_fixer(value)
-            self._cpf = Cpf_user.Schema().loads(
+            self._cpf = CpfUser.Schema().loads(
                         json.dumps({"cpf": value_retried}))
 
     @property

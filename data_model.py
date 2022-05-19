@@ -1,6 +1,7 @@
-from openpyxl import Workbook, load_workbook
-from spreadsheet_entity import Spreadsheet
 import ast
+from openpyxl import load_workbook
+from spreadsheet_entity import Spreadsheet
+
 
 FILE = 'tabela-de-exemplo.xlsx'
 FILE2 = 'tabela-de-exemplo1.xlsx'
@@ -23,22 +24,22 @@ def build_address(address):
     city = address['city']
     state = address['state']
     zip_code = address['zip_code']
-    return "{} {}, {}, {} {}".format(street, number, city, state, zip_code)
+    return f"{street} {number}, {city}, {state} {zip_code}"
 
-def get_one_record(id):
+def get_one_record(row_id):
     FILE = 'tabela-de-exemplo.xlsx'
     workbook = load_workbook(FILE)
     ws = workbook['results-20220124-165033']
-    row = id+4
+    row_id+=4
     obj = Spreadsheet()
-    obj.email = ws[f"A{row}"].value
-    obj.name = ws[f"B{row}"].value
-    obj.group = ws[f"C{row}"].value
-    obj.group_name = ws[f"D{row}"].value
-    obj.cpf = ws[f"E{row}"].value
-    obj.telephone = ws[f"F{row}"].value
-    obj.birthday = ws[f"G{row}"].value
-    obj.address = split_address(ws[f"H{row}"].value)
+    obj.email = ws[f"A{row_id}"].value
+    obj.name = ws[f"B{row_id}"].value
+    obj.group = ws[f"C{row_id}"].value
+    obj.group_name = ws[f"D{row_id}"].value
+    obj.cpf = ws[f"E{row_id}"].value
+    obj.telephone = ws[f"F{row_id}"].value
+    obj.birthday = ws[f"G{row_id}"].value
+    obj.address = split_address(ws[f"H{row_id}"].value)
     return obj
 
 def run():
@@ -46,7 +47,7 @@ def run():
     workbook = load_workbook(FILE)
     ws = workbook['results-20220124-165033']
     objects = []
-    max_columns = len([row for row in ws if not all([cell.value == None for cell in row])])+2
+    max_columns = len([row for row in ws if not all([cell.value is None for cell in row])])+2
     emails = ws["A4":f"A{max_columns}"]
     names = ws["B4":f"B{max_columns}"]
     groups = ws["C4":f"C{max_columns}"]
@@ -78,12 +79,27 @@ def run():
         # print("\n")
     return objects
 
+def change_row(change_id, row):
+    FILE = 'tabela-de-exemplo.xlsx'
+    workbook = load_workbook(FILE)
+    row_id=change_id+4
+    ws = workbook['results-20220124-165033']
+    ws[f"A{row_id}"] = row.email.email_address
+    ws[f"B{row_id}"] = row.name
+    ws[f"C{row_id}"] = row.group
+    ws[f"D{row_id}"] = row.group_name
+    ws[f"E{row_id}"] = ast.literal_eval(row.cpf)['cpf']
+    ws[f"F{row_id}"] = ast.literal_eval(row.telephone)['telephone']
+    ws[f"G{row_id}"] = ast.literal_eval(row.birthday)['birthday']
+    ws[f"H{row_id}"] = build_address(ast.literal_eval(row.address))
+    workbook.save(FILE)
+    return f"Galerner alterado na posição {change_id}"
 
 def add_row(row):
     FILE = 'tabela-de-exemplo.xlsx'
     workbook = load_workbook(FILE)
     ws = workbook['results-20220124-165033']
-    insert_row = len([row for row in ws if not all([cell.value == None for cell in row])])+3
+    insert_row = len([row for row in ws if not all([cell.value is None for cell in row])])+3
     ws.insert_rows(insert_row)
     ws[f"A{insert_row}"] = row.email.email_address
     ws[f"B{insert_row}"] = row.name
@@ -94,12 +110,12 @@ def add_row(row):
     ws[f"G{insert_row}"] = ast.literal_eval(row.birthday)['birthday']
     ws[f"H{insert_row}"] = build_address(ast.literal_eval(row.address))
     workbook.save(FILE)
-    return "Galerner inserido na posição {}".format(insert_row)
+    return "Galerner inserido na posição {}".format(row)
 
-def delete_row(row):
+def delete_row(row_number):
     FILE = 'tabela-de-exemplo.xlsx'
     workbook = load_workbook(FILE)
     ws = workbook['results-20220124-165033']
-    ws.delete_rows(row+4)
+    ws.delete_rows(row_number+4)
     workbook.save(FILE)
-    return "Galerner deletado na posição {}".format(row)
+    return f"Galerner deletado na posição {row_number}"
