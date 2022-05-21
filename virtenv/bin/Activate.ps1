@@ -166,7 +166,7 @@ $VenvExecPath = Split-Path -Parent $MyInvocation.MyCommand.Definition
 $VenvExecDir = Get-Item -Path $VenvExecPath
 
 Write-Verbose "Activation script is located in path: '$VenvExecPath'"
-Write-Verbose "VenvExecDir Fulcpf: '$($VenvExecDir.Fulcpf)"
+Write-Verbose "VenvExecDir Fullname: '$($VenvExecDir.FullName)"
 Write-Verbose "VenvExecDir Name: '$($VenvExecDir.Name)"
 
 # Set values required in priority: CmdLine, ConfigFile, Default
@@ -177,7 +177,7 @@ if ($VenvDir) {
 }
 else {
     Write-Verbose "VenvDir not given as a parameter, using parent directory name as VenvDir."
-    $VenvDir = $VenvExecDir.Parent.Fulcpf.TrimEnd("\\/")
+    $VenvDir = $VenvExecDir.Parent.FullName.TrimEnd("\\/")
     Write-Verbose "VenvDir=$VenvDir"
 }
 
