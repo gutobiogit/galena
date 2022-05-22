@@ -127,6 +127,7 @@ docker run -p 5500:5500 -p 5000:5000 --mount type=bind,source="$(pwd)"/src/datab
 ## Usage
 
 Open a browser in http://127.0.0.1:5500/
+<br>
 The used .xlsx file is located at src/database, it persists even when the container is terminated.
 <br>
 If you want to use another .xlsx file just change the file.
