@@ -1,3 +1,6 @@
+var globalvar = 12;
+
+
 function loadTable() {
     const xhttp = new XMLHttpRequest();
     xhttp.open("GET", "http://127.0.0.1:5000/v1/data");
@@ -9,8 +12,8 @@ function loadTable() {
         for (let object of objects) {
           trHTML += '<tr>'; 
           trHTML += '<td>'+object['id']+'</td>';
-          trHTML += '<td>'+object['fname']+'</td>';
-          trHTML += '<td>'+JSON.parse(object['lname']).cpf+'</td>';
+          trHTML += '<td>'+object['name']+'</td>';
+          trHTML += '<td>'+JSON.parse(object['cpf']).cpf+'</td>';
           trHTML += '<td>'+object['username']+'</td>';
           trHTML += '<td>'+JSON.parse(object['group'])+'</td>';
           trHTML += '<td>'+object['group_name']+'</td>';
@@ -37,8 +40,8 @@ function loadTable() {
       title: 'Adicionar Galerners',
       html:
         '<input id="id" type="hidden">' +
-        '<input id="fname" class="swal2-input" placeholder="Name">' +
-        '<input id="lname" class="swal2-input" placeholder="CPF">' +
+        '<input id="name" class="swal2-input" placeholder="Name">' +
+        '<input id="cpf" class="swal2-input" placeholder="CPF">' +
         '<input id="email" class="swal2-input" placeholder="Email">' +
         '<input id="group" class="swal2-input" placeholder="Grupo">' +
         '<input id="group_name" class="swal2-input" placeholder="Grupo nome">' +
@@ -52,6 +55,20 @@ function loadTable() {
 
       focusConfirm: false,
       preConfirm: () => {
+                          // var user = document.getElementById("name").value;
+                          // var user = document.getElementById("cpf").value;
+                          // var user = document.getElementById("email").value;
+                          // var user = document.getElementById("group").value;
+                          // var user = document.getElementById("group_name").value;
+                          // var user = document.getElementById("telephone").value;
+                          // var user = document.getElementById("birthday").value;
+                          // var user = document.getElementById("street").value;
+                          // var user = document.getElementById("number").value;
+                          // var user = document.getElementById("city").value;
+                          // var user = document.getElementById("state").value;
+                          // var user = document.getElementById("zip_code").value;
+                          // console.log('GLOBAL'+globalvar);
+
         //Swal.fire('ERROR');
         userCreate();
       }
@@ -60,8 +77,8 @@ function loadTable() {
   
   function userCreate() {
     const username = document.getElementById("id").value;
-    const fname = document.getElementById("fname").value;
-    const lname = document.getElementById("lname").value;
+    const name = document.getElementById("name").value;
+    const cpf = document.getElementById("cpf").value;
     const email = document.getElementById("email").value;
     const group = document.getElementById("group").value;
     const group_name = document.getElementById("group_name").value;
@@ -81,7 +98,7 @@ function loadTable() {
     xhttp.open("POST", "http://127.0.0.1:5000/v1/data");
     xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhttp.send(JSON.stringify({ 
-      "id": id, "fname": fname, "lname": lname, "email": email, "group": group, 
+      "id": id, "name": name, "cpf": cpf, "email": email, "group": group, 
       "group_name": group_name, "telephone": telephone, "birthday": birthday, 
       "street": street, "number": number, "city": city, "state": state,
       "zip_code": zip_code
@@ -123,8 +140,8 @@ function loadTable() {
           title: 'Edit User',
           html:
             '<input id="id" type="hidden" value="'+ id+'">' +
-            '<input id="fname" class="swal2-input" placeholder="Name" value="'+user['name']+'">' +
-            '<input id="lname" class="swal2-input" placeholder="CPF" value="'+JSON.parse(user['cpf']).cpf+'">' +
+            '<input id="name" class="swal2-input" placeholder="Name" value="'+user['name']+'">' +
+            '<input id="cpf" class="swal2-input" placeholder="CPF" value="'+JSON.parse(user['cpf']).cpf+'">' +
             '<input id="email" class="swal2-input" placeholder="Email" value="'+user['email']+'">' +
             '<input id="group" class="swal2-input" placeholder="Grupo" value="'+user['group']+'">' +
             '<input id="group_name" class="swal2-input" placeholder="Grupo nome" value="'+user['group_name']+'">' +
@@ -146,8 +163,8 @@ function loadTable() {
   
   function userEdit() {
     const id = document.getElementById("id").value;
-    const fname = document.getElementById("fname").value;
-    const lname = document.getElementById("lname").value;
+    const name = document.getElementById("name").value;
+    const cpf = document.getElementById("cpf").value;
     const email = document.getElementById("email").value;
     const group = document.getElementById("group").value;
     const group_name = document.getElementById("group_name").value;
@@ -162,7 +179,7 @@ function loadTable() {
     xhttp.open("PUT", "http://127.0.0.1:5000/v1/data/"+id);
     xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhttp.send(JSON.stringify({ 
-      "fname": fname, "lname": lname, "email": email, "group": group, 
+      "name": name, "cpf": cpf, "email": email, "group": group, 
       "group_name": group_name, "telephone": telephone, "birthday": birthday, 
       "street": street, "number": number, "city": city, "state": state,
       "zip_code": zip_code

@@ -3,8 +3,7 @@ from openpyxl import load_workbook
 from spreadsheet_entity import Spreadsheet
 
 
-FILE = 'tabela-de-exemplo.xlsx'
-FILE2 = 'tabela-de-exemplo1.xlsx'
+FILE = 'src/database/tabela-de-exemplo.xlsx'
 workbook = load_workbook(FILE)
 ws = workbook['results-20220124-165033']
 
@@ -27,9 +26,6 @@ def build_address(address):
     return f"{street} {number}, {city}, {state} {zip_code}"
 
 def get_one_record(row_id):
-    FILE = 'tabela-de-exemplo.xlsx'
-    workbook = load_workbook(FILE)
-    ws = workbook['results-20220124-165033']
     row_id+=4
     obj = Spreadsheet()
     obj.email = ws[f"A{row_id}"].value
@@ -42,10 +38,7 @@ def get_one_record(row_id):
     obj.address = split_address(ws[f"H{row_id}"].value)
     return obj
 
-def run():
-    FILE = 'tabela-de-exemplo.xlsx'
-    workbook = load_workbook(FILE)
-    ws = workbook['results-20220124-165033']
+def get_all_records():
     objects = []
     max_columns = len([row for row in ws if not all([cell.value is None for cell in row])])+2
     emails = ws["A4":f"A{max_columns}"]
@@ -67,23 +60,10 @@ def run():
         obj.birthday = birthdays[count][0].value
         obj.address = split_address(address[count][0].value)
         objects.append(obj)
-        # print(obj.email)
-        # print(obj.name)
-        # print(obj.group)
-        # print(obj.group_name)
-        # print(obj.cpf)
-        # print(obj.telephone)
-        # print(obj.birthday) 
-        # print(obj.address)
-        # print("\n")
-        # print("\n")
     return objects
 
 def change_row(change_id, row):
-    FILE = 'tabela-de-exemplo.xlsx'
-    workbook = load_workbook(FILE)
     row_id=change_id+4
-    ws = workbook['results-20220124-165033']
     ws[f"A{row_id}"] = row.email.email_address
     ws[f"B{row_id}"] = row.name
     ws[f"C{row_id}"] = row.group
@@ -96,9 +76,6 @@ def change_row(change_id, row):
     return f"Galerner alterado na posição {change_id}"
 
 def add_row(row):
-    FILE = 'tabela-de-exemplo.xlsx'
-    workbook = load_workbook(FILE)
-    ws = workbook['results-20220124-165033']
     insert_row = len([row for row in ws if not all([cell.value is None for cell in row])])+3
     ws.insert_rows(insert_row)
     ws[f"A{insert_row}"] = row.email.email_address
@@ -110,12 +87,9 @@ def add_row(row):
     ws[f"G{insert_row}"] = ast.literal_eval(row.birthday)['birthday']
     ws[f"H{insert_row}"] = build_address(ast.literal_eval(row.address))
     workbook.save(FILE)
-    return "Galerner inserido na posição {}".format(row)
+    return "Galerner inserido na posição {}".format(insert_row)
 
 def delete_row(row_number):
-    FILE = 'tabela-de-exemplo.xlsx'
-    workbook = load_workbook(FILE)
-    ws = workbook['results-20220124-165033']
     ws.delete_rows(row_number+4)
     workbook.save(FILE)
     return f"Galerner deletado na posição {row_number}"

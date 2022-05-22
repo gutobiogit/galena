@@ -1,7 +1,9 @@
+"""_summary_
+"""
 from dataclasses import field
 from marshmallow_dataclass import dataclass
 import marshmallow.validate
-
+# all regex expression related to address
 address_regex = r"""(?:RUA|Rua|R.|AVENIDA|Avenida|
                  AV.|TRAVESSA|Travessa|TRAV.|Trav.|
                  Marginal|Marg.|Alameda).*(?<![0-9])$"""
@@ -13,7 +15,6 @@ number_regex = r"(?:[0-9]{1,5}|s\/n)"
 
 @dataclass
 class Address:
-    """Class for keeping track of Address."""
     street: str = field(metadata={"validate":
                         marshmallow.validate.Regexp(address_regex)})
     number: str = field(metadata={"validate":

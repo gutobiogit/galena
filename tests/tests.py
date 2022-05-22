@@ -1,12 +1,12 @@
 import unittest
 import json
 import marshmallow
-from email_dto import Email_user
-from cpf_dto import CpfUser
-from address_dto import Address
-from birthday_dto import Birthday_user
-from telephone_dto import Telephone_user
-from spreadsheet_error_fixer import ErrorFixer
+from src.email_dto import Email_user
+from src.cpf_dto import CpfUser
+from src.address_dto import Address
+from src.birthday_dto import Birthday_user
+from src.telephone_dto import Telephone_user
+from src.spreadsheet_error_fixer import ErrorFixer
 
 
 class TestUnit(unittest.TestCase):
