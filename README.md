@@ -49,7 +49,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Galena challenger is test for full-stack developers, it has a front in vanilla javascript and the
+Galena challenger is a test for full-stack developers, it has a front in vanilla javascript and the
 backend in flask.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -70,7 +70,6 @@ backend in flask.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
 * git
 ```sh
 sudo apt install git
