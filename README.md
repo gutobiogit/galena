@@ -105,7 +105,7 @@ docker run -p 5500:5500 -p 5000:5000 --mount type=bind,source="$(pwd)"/src/datab
 ```sh
 source virtenv/bin/activate
 ```
-* Run tests (only to test the programs)
+* Run tests (only to test the program)
 ```sh
 python3 -m unittest discover
 ```
