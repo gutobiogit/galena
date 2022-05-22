@@ -1,10 +1,10 @@
 import json
 from marshmallow import ValidationError
-from telephone_dto import Telephone_user
-from email_dto import Email_user
-from cpf_dto import CpfUser
-from address_dto import Address
-from birthday_dto import Birthday_user
+from telephone_entity import Telephone_user
+from email_entity import Email_user
+from cpf_entity import CpfUser
+from address_entity import Address
+from birthday_entity import Birthday_user
 from spreadsheet_error_fixer import ErrorFixer
 
 

@@ -1,11 +1,11 @@
 import unittest
 import json
 import marshmallow
-from src.email_dto import Email_user
-from src.cpf_dto import CpfUser
-from src.address_dto import Address
-from src.birthday_dto import Birthday_user
-from src.telephone_dto import Telephone_user
+from src.email_entity import Email_user
+from src.cpf_entity import CpfUser
+from src.address_entity import Address
+from src.birthday_entity import Birthday_user
+from src.telephone_entity import Telephone_user
 from src.spreadsheet_error_fixer import ErrorFixer
 
 
