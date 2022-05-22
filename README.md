@@ -91,14 +91,17 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 ## Getting Started
 
 * To test the project you first have to clone it
-- git clone git@github.com:gutobiogit/galena.git
-
+```sh
+ git clone git@github.com:gutobiogit/galena.git
+```
 * Build the docker container image
-- docker image build -t galena_challenger .
-
+```sh
+docker image build -t galena_challenger .
+```
 * Run the container
-- docker run -p 5500:5500 -p 5000:5000 --mount type=bind,source="$(pwd)"/src/database,target=/app/src/database/ galena_challenger
-
+```sh
+docker run -p 5500:5500 -p 5000:5000 --mount type=bind,source="$(pwd)"/src/database,target=/app/src/database/ galena_challenger
+```
 
 ### Prerequisites
 
