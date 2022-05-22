@@ -92,6 +92,7 @@ This is an example of how to list things you need to use the software and how to
   ```sh
   pip install git
   ```
+
 * docker
   ```sh
    sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
@@ -105,31 +106,18 @@ This is an example of how to list things you need to use the software and how to
     ```sh
      git clone git@github.com:gutobiogit/galena.git
     ```
+
 * Build the docker container image
     ```sh
     docker image build -t galena_challenger .
     ```
+    
 * Run the container
 ```sh
 docker run -p 5500:5500 -p 5000:5000 --mount type=bind,source="$(pwd)"/src/database,target=/app/src/database/ galena_challenger
 ```
 
 
-### Installation
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/github_username/repo_name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
