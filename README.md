@@ -11,7 +11,7 @@
   </br>
     In this repository you have also the documentation and the tests
     <br />
-    <a href="https://github.com/gutobiogit/galena/docs"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/gutobiogit/galena/tree/main/docs"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://github.com/gutobiogit/galena">View Demo</a>
