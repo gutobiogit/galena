@@ -131,7 +131,6 @@ Open a browser in http://127.0.0.1:5500/
 The used .xlsx file is located at src/database, it persists even when the container is terminated.
 <br>
 If you want to use another .xlsx file just change the file.
-<p align="right">(<a href="#top">back to top</a>)</p>
 <!-- LICENSE -->
 ## License
 
@@ -139,6 +138,27 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
+
+
+<!-- CONTACT -->
+## Contact
+
+Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
+
+Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+
+
+<!-- ACKNOWLEDGMENTS -->
+## Acknowledgments
+
+* []()
+* []()
+* []()
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 
 
