@@ -90,7 +90,7 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 This is an example of how to list things you need to use the software and how to install them.
 * git
   ```sh
-  pip install git
+  `sudo apt install git
   ```
 
 * docker
@@ -111,7 +111,7 @@ This is an example of how to list things you need to use the software and how to
     ```sh
     docker image build -t galena_challenger .
     ```
-    
+
 * Run the container
 ```sh
 docker run -p 5500:5500 -p 5000:5000 --mount type=bind,source="$(pwd)"/src/database,target=/app/src/database/ galena_challenger
@@ -126,10 +126,9 @@ docker run -p 5500:5500 -p 5000:5000 --mount type=bind,source="$(pwd)"/src/datab
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
+Open a browser in http://127.0.0.1:5500/
+The used .xlsx file is located at src/database, it persists even when the container is terminated.
+If you want to use another .xlsx file just change the file.
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
