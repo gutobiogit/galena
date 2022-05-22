@@ -16,10 +16,10 @@
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">project_title</h3>
+<h3 align="center">Galena challenger</h3>
 
   <p align="center">
-    project_description
+    Galena Challenger is a CRUD system that uses excel file as db
     <br />
     <a href="https://github.com/gutobiogit/galena/docs"><strong>Explore the docs »</strong></a>
     <br />
@@ -75,14 +75,13 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 
 ### Built With
 
-* [Next.js](https://nextjs.org/)
-* [React.js](https://reactjs.org/)
-* [Vue.js](https://vuejs.org/)
-* [Angular](https://angular.io/)
-* [Svelte](https://svelte.dev/)
-* [Laravel](https://laravel.com)
-* [Bootstrap](https://getbootstrap.com)
-* [JQuery](https://jquery.com)
+* [Flask](https://flask.palletsprojects.com/en/2.1.x/)
+* [python](https://www.python.org/)
+* [http.server](https://docs.python.org/3/library/http.server.html/)
+* [docker](https://www.docker.com/)
+* [google tag](https://tagmanager.google.com/)
+* [Bootstrap](https://getbootstrap.com/)
+* [sweet alert](https://sweetalert.js.org/guides/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -91,8 +90,15 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+* To test the project you first have to clone it
+- git clone git@github.com:gutobiogit/galena.git
+
+* Build the docker container image
+- docker image build -t galena_challenger .
+
+* Run the container
+- docker run -p 5500:5500 -p 5000:5000 --mount type=bind,source="$(pwd)"/src/database,target=/app/src/database/ galena_challenger
+
 
 ### Prerequisites
 
