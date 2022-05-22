@@ -55,21 +55,6 @@ function loadTable() {
 
       focusConfirm: false,
       preConfirm: () => {
-                          // var user = document.getElementById("name").value;
-                          // var user = document.getElementById("cpf").value;
-                          // var user = document.getElementById("email").value;
-                          // var user = document.getElementById("group").value;
-                          // var user = document.getElementById("group_name").value;
-                          // var user = document.getElementById("telephone").value;
-                          // var user = document.getElementById("birthday").value;
-                          // var user = document.getElementById("street").value;
-                          // var user = document.getElementById("number").value;
-                          // var user = document.getElementById("city").value;
-                          // var user = document.getElementById("state").value;
-                          // var user = document.getElementById("zip_code").value;
-                          // console.log('GLOBAL'+globalvar);
-
-        //Swal.fire('ERROR');
         userCreate();
       }
     })
