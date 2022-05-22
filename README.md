@@ -8,6 +8,7 @@
 
   <p align="center">
     Galena Challenger is a CRUD system that uses excel file as db.
+  </br>
     In this repository you have also the documentation and the tests
     <br />
     <a href="https://github.com/gutobiogit/galena/docs"><strong>Explore the docs »</strong></a>
