@@ -7,7 +7,8 @@
 <h3 align="center">Galena challenger</h3>
 
   <p align="center">
-    Galena Challenger is a CRUD system that uses excel file as db
+    Galena Challenger is a CRUD system that uses excel file as db.
+    In this repository you have also the documentation and the tests
     <br />
     <a href="https://github.com/gutobiogit/galena/docs"><strong>Explore the docs »</strong></a>
     <br />
@@ -99,11 +100,11 @@ docker image build -t galena_challenger .
 docker run -p 5500:5500 -p 5000:5000 --mount type=bind,source="$(pwd)"/src/database,target=/app/src/database/ galena_challenger
 ```
 
-* Start virtual environment
+* Start virtual environment (only for modifications on the program !!!)
 ```sh
 source virtenv/bin/activate
 ```
-* Run tests
+* Run tests (only to test the programs)
 ```sh
 python3 -m unittest discover
 ```
