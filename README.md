@@ -1,14 +1,8 @@
 <div id="top"></div>
 
 
-
-
-<!-- PROJECT LOGO -->
 <br />
-<div align="center">
-  <a href="https://galena.com/wp-content/uploads/2021/08/logo.png">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
+
 
 <h3 align="center">Galena challenger</h3>
 
