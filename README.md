@@ -86,14 +86,14 @@ This is an example of how to list things you need to use the software and how to
 ## Getting Started
 
 * To test the project you first have to clone it
-    ```sh
-     git clone git@github.com:gutobiogit/galena.git
-    ```
+```sh
+ git clone git@github.com:gutobiogit/galena.git
+```
 
 * Build the docker container image
-    ```sh
-    docker image build -t galena_challenger .
-    ```
+```sh
+docker image build -t galena_challenger .
+```
 
 * Run the container
 ```sh
