@@ -100,6 +100,14 @@ This is an example of how to list things you need to use the software and how to
 docker run -p 5500:5500 -p 5000:5000 --mount type=bind,source="$(pwd)"/src/database,target=/app/src/database/ galena_challenger
 ```
 
+* Start virtual environment
+```sh
+source virtenv/bin/activate
+```
+* Run tests
+```sh
+python3 -m unittest discover
+```
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
