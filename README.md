@@ -72,14 +72,14 @@ backend in flask.
 
 This is an example of how to list things you need to use the software and how to install them.
 * git
-  ```sh
-  sudo apt install git
-  ```
+```sh
+sudo apt install git
+```
 
 * docker
-  ```sh
-   sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
-  ```
+```sh
+ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+```
 
 
 <!-- GETTING STARTED -->
