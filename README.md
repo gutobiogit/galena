@@ -86,7 +86,7 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 This is an example of how to list things you need to use the software and how to install them.
 * git
   ```sh
-  `sudo apt install git
+  sudo apt install git
   ```
 
 * docker
