@@ -7,9 +7,11 @@
 <h3 align="center">Galena challenger</h3>
 
   <p align="center">
-    Galena Challenger is a CRUD system that uses excel file as db
+    Galena Challenger is a CRUD system that uses excel file as db.
+  </br>
+    In this repository you have also the documentation and the tests
     <br />
-    <a href="https://github.com/gutobiogit/galena/docs"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/gutobiogit/galena/tree/main/docs"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://github.com/gutobiogit/galena">View Demo</a>
@@ -49,7 +51,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Galena challenger is test for full-stack developers, it has a front in vanilla javascript and the
+Galena challenger is a test for full-stack developers, it has a front in vanilla javascript and the
 backend in flask.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -70,7 +72,6 @@ backend in flask.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
 * git
 ```sh
 sudo apt install git
@@ -100,11 +101,11 @@ docker image build -t galena_challenger .
 docker run -p 5500:5500 -p 5000:5000 --mount type=bind,source="$(pwd)"/src/database,target=/app/src/database/ galena_challenger
 ```
 
-* Start virtual environment
+* Start virtual environment (only for modifications on the program !!!)
 ```sh
 source virtenv/bin/activate
 ```
-* Run tests
+* Run tests (only to test the programs)
 ```sh
 python3 -m unittest discover
 ```
